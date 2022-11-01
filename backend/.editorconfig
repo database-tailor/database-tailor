@@ -1,0 +1,15 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+root = true
+
+[*]
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+end_of_line = lf
+
+[*.{fs,fsi,fsx}]
+fsharp_record_multiline_formatter=number_of_items
+fsharp_array_or_list_multiline_formatter=number_of_items

@@ -1,0 +1,22 @@
+services:
+  redis:
+    image: redis
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - ./dev_data/redis:/var/lib/redis/data
+    ports:
+      - "6379:6739"
+  webapi:
+    build: ./backend/DatabaseTailor
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__Redis=redis,password=${REDIS_PASSWORD}
+    depends_on:
+      redis:
+        condition: service_started
